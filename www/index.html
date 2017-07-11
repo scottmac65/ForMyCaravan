@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<!--
+		Licensed to the Apache Software Foundation (ASF) under one
+		or more contributor license agreements.  See the NOTICE file
+		distributed with this work for additional information
+		regarding copyright ownership.  The ASF licenses this file
+		to you under the Apache License, Version 2.0 (the
+		"License"); you may not use this file except in compliance
+		with the License.  You may obtain a copy of the License at
+
+		http://www.apache.org/licenses/LICENSE-2.0
+
+		Unless required by applicable law or agreed to in writing,
+		software distributed under the License is distributed on an
+		"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+		 KIND, either express or implied.  See the License for the
+		specific language governing permissions and limitations
+		under the License.
+-->
+<html>
+		<head>
+
+				<!--
+				Customize this policy to fit your own app's needs. For more guidance, see:
+						https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+				Some notes:
+						* gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+						* https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+						* Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+								* Enable inline JS: add 'unsafe-inline' to default-src
+				-->
+				<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+				<meta name="format-detection" content="telephone=no">
+				<meta name="msapplication-tap-highlight" content="no">
+				<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+				<link rel="stylesheet" href="css/bootstrap.min.css"/>
+				<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css"/>
+				<link rel="stylesheet" href="css/bootstrap-datepicker.standalone.min.css" />
+				<link rel="stylesheet" href="css/main.css"/>
+
+				<script src="js/jquery-3.2.1.min.js"></script>
+				<script src="js/bootstrap-datepicker.min.js"></script>
+				<script src="js/bootstrap.min.js"></script>
+				<script src="js/jquery.validate.min.js"></script>
+				<script src="js/lib/sisyphus.js"></script>
+				<script src="js/index.js"></script>
+
+
+				<title>4MyCaravan</title>
+		</head>
+		<body>
+		<div class=".container">
+			<img src="img/4MyCaravan-label.png" alt="4MyCaravan"></img><small><em><span class="plate"> for all your caravan needs</span></em></small>
+		</div> <!-- header container -->
+		<div class="col-md-12">
+			<div class="panel with-nav-tabs panel-primary">
+				<div class="panel-heading">
+					<ul class="nav nav-tabs" data-tabs="tabs" id="myCaravanTab">
+						<li class="active"><a data-toggle="tab" href="#tab1Details">Details</a></li>
+						<li><a data-toggle="tab" href="#tab2Weights">Weights</a></li>
+						<li><a data-toggle="tab" href="#tab3Checklists">Checklists</a></li>
+						<li><a data-toggle="tab" href="#tab4Editlist">Edit Lists</a></li>
+					</ul> <!-- tabs -->
+				</div> <!-- panel heading -->
+				<div class="panel-body">
+					<div class="tab-content">
+						<div class="tab-pane fade in active" id="tab1Details">
+							<div class=".container">
+								<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#carDetails" aria-expanded="false" aria-controls="carDetails">Car Details</button>
+								<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#vanDetails" aria-expanded="false" aria-controls="vanDetails">Van Details</button>
+								<hr>
+								<div class="panel-group" id="accordionDetailsHelp" role="tablist" aria-multiselectable="true">
+									<div class="panel panel-info" id="panelDetailsOne">
+										<div class ="panel-heading" role="tab" id="headingDetailsOne">
+											<h4 class="panel-title">
+												<a role="button" id="headingDetailsButton" data-toggle="collapse" data-parent="#accordionDetailsHelp" href="#collapseDetailsOne" aria-expanded="true" aria-controls="collapseDetailsOne">Details Lists Help </a>
+											</h4>
+										</div>
+										<div id="collapseDetailsOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDetailsOne">
+											<div class="panel-body" id="panelDetailsOneExplain">
+												<p>Store Details relating to your Car and Van.</p>
+												<p>Details are automatially saved and redisplayed on entry for this device only. If you want to use more than one device then you need to replicate the details manually. Therefore, you do not need Internet access to use applicaiton and retrieve or change details</p>
+												<p>If you want to remove the details use the <button type="button" id="listGuide" class="btn btn-xs btn-danger" disabled="disabled">Clear Car/Van Details</button> button.</p>
+											</div> <!-- panel body -->
+										</div> <!-- collapseD1 -->
+									</div>  <!-- default -->
+								</div> <!-- accordionListHelp -->
+								<div id="carDetails" class="collapse" data-collapse-group="collapse-group">
+									<h4>Car Details</h4>
+									<form class="form-horizontal" id="vehicleDetails">
+										<div class="form-group row">
+											<label for="vehMake" class="col-sm-2 col-form-label">Make</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="vehMake" value="" />
+											</div> <!-- carmake -->
+										</div>
+										<div class="form-group row">
+											<label for="vehModel" class="col-sm-2 col-form-label">Model</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="vehModel" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="vehSpec" class="col-sm-2 col-form-label">Specification</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="vehSpec" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="vehYear" class="col-sm-2 col-form-label">Year</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="vehYear" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="vehVin" class="col-sm-2 col-form-label">VIN</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="vehVin" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="vehRego" class="col-sm-2 col-form-label">Rego</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="vehRego" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+												<label for="vehRegorenw" class="col-sm-2 col-form-label">Rego Renew</label>
+												<div class="col-sm-10">
+														<div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+																<input type="text" class="form-control" id="vehRegorenew" >
+																<div class="input-group-addon">
+																		<span class="glyphicon glyphicon-th"></span>
+																</div>
+														</div>
+												</div>
+										</div>
+										<div class="form-group row">
+											<label for="vehInsure" class="col-sm-2 col-form-label">Insurance</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="vehInsure" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+												<label for="vehInsurerenew" class="col-sm-2 col-form-label">Insurance Renew</label>
+												<div class="col-sm-10">
+														<div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+																<input id="vehInsurerenew" type="text" class="form-control">
+																<div class="input-group-addon">
+																		<span class="glyphicon glyphicon-th"></span>
+																</div>
+														</div>
+												</div>
+										</div>
+									</form>
+									<button type="button" class="btn btn-danger" id="butVehReset">Clear Car Details</button>
+								</div> <!-- car collapse -->
+								<div id="vanDetails" class="collapse" data-collapse-group="collapse-group">
+									<h4>Van Details</h4>
+									<form class="form-horizontal" id="trailDetails">
+										<div class="form-group row">
+											<label for="trailMake" class="col-sm-2 col-form-label">Make</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="trailMake" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="trailModel" class="col-sm-2 col-form-label">Model</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="trailModel" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="trailDesign" class="col-sm-2 col-form-label">Design</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="trailDesign" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="trailYear" class="col-sm-2 col-form-label">Year</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="trailYear" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="trailVin" class="col-sm-2 col-form-label">VIN</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="trailVin" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="trailRego" class="col-sm-2 col-form-label">Rego</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="trailRego" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+												<label for="trailRegorenew" class="col-sm-2 col-form-label">Rego Renew</label>
+												<div class="col-sm-10">
+														<div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+																<input id="trailRegorenew" type="text" class="form-control">
+																<div class="input-group-addon">
+																		<span class="glyphicon glyphicon-th"></span>
+																</div>
+														</div>
+												</div>
+										</div>
+										<div class="form-group row">
+											<label for="trailInsure" class="col-sm-2 col-form-label">Insurance</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="trailInsure" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+												<label for="trailInsurerenew" class="col-sm-2 col-form-label">Insurance Renew</label>
+												<div class="col-sm-10">
+														<div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+																<input id="trailInsurerenew" type="text" class="form-control">
+																<div class="input-group-addon">
+																		<span class="glyphicon glyphicon-th"></span>
+																</div>
+														</div>
+												</div>
+										</div>
+										<div class="form-group row">
+											<label for="trailBlength" class="col-sm-2 col-form-label">Body Length</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="trailBlength" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="trailTlength" class="col-sm-2 col-form-label">Travel Length</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="trailTlength" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="trailTheight" class="col-sm-2 col-form-label">Travel Height</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="trailTheight" value="" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="trailWidth" class="col-sm-2 col-form-label">Width</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="trailWidth" value="" />
+											</div>
+										</div>
+									</form>
+									<button type="button" class="btn btn-danger" id="butTrailReset">Clear Van Data</button>
+								</div> <!-- van collapse -->
+							</div> <!-- container -->
+						</div> <!-- tab1 -->
+						<div class="tab-pane fade" id="tab2Weights">
+							<div class=".container">
+								<hr>
+								<div class="panel-group" id="accordionWeightsHelp" role="tablist" aria-multiselectable="true">
+									<div class="panel panel-info" id="panelWeightsOne">
+										<div class ="panel-heading" role="tab" id="headingWeightsOne">
+											<h4 class="panel-title">
+												<a role="button" id="headingWeightsOneButton" data-toggle="collapse" data-parent="#accordionWeightsHelp" href="#collapseWeightsOne" aria-expanded="true" aria-controls="collapseWeightsOne">Weights Help</a>
+											</h4>
+										</div> <!-- panel heading -->
+										<div id="collapseWeightsOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingWeightsOne">
+											<div class="panel-body" id="panelWeightsOneDetails">
+												<p>This area is provided for guidance only - <span class="text-danger"><strong>Under no circumstances should these entries be relied on.</strong></span></p>
+												<p>For legally accurate details use an appropriate solution i.e. public weigh bridge.</p>
+												<p>Details are automatially saved and redisplayed on entry for this device only. If you want to use more than one device then you need to replicate the details manually. Therefore, you do not need Internet access to use applicaiton and retrieve or change details</p>
+												<p>If you want to deleter details use the <button type="button" id="listGuide1" class="btn btn-xs btn-danger" disabled="disabled">Clear Car/Van Details</button> button.</p>
+												<p>The following table will assist in understanding how to fill in fields. Additionally, guidance is provided under each field describing how weights are calculated.</p>
+												<p>There are a number of hints to assist in filling in information and understanding assessments.</p>
+												<p>Each field has a related label that comprises of an icon and coloured text (see table below).</p>
+												<p>Inpute field backgrounds (where useful) will change depending on whether the weights are still within assessed limits and warning messages will be displayed below the field</p>
+												<p>Output fields (readonly fields) will change colours based on details entered.</p>
+												<p>Fields with soft red backgrounds highlight areas of concern (overweight). Fields with soft green backgrounds highlight weights within limits.</p>
+												<br>
+												<div class="table-responsive">
+													<table class="table">
+														<thead>
+															<tr>
+																<th>Icon</th>
+																<th>Text Colour</th>
+																<th>Definition</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td><span class="glyphicon glyphicon-info-sign"></span></td>
+																<td>Black</td>
+																<td>Useful information - not required for assessments</td>
+															</tr>
+															<tr>
+																<td><span class="glyphicon glyphicon-list blue"></span></td>
+																<td><span class="plate">Blue</span></td>
+																<td>Manufacturer Specified - compliance plates or owners manuals</td>
+															</tr>
+															<tr>
+																<td><span class="glyphicon glyphicon-scale orange"></span></td>
+																<td><span class="owner">Orange</span></td>
+																<td>Owner determined weights</td>
+															</tr>
+															<tr>
+																<td><span class="glyphicon glyphicon-stats purple"></span></td>
+																<td><span class="outputs">Purple</span></td>
+																<td>Values calculated from the inputs</td>
+															</tr>
+															<tr>
+																<td><span class="glyphicon glyphicon-asterisk red"></span></td>
+																<td></td>
+																<td>Denotes Required Field</td>
+															</tr>
+														</tbody>
+													</table>
+												</div> <!-- responsive table -->
+											</div> <!-- panel body -->
+										</div> <!-- collapse -->
+									</div>  <!-- panel info -->
+								</div> <!-- accordionWeightsHelp -->
+								<hr>
+								<div class="panel panel-danger">
+									<div class="panel-heading"><p class="text-danger"><strong>Warning</strong></p></div>
+									<div class="panel-body"><strong>Weights should be used as a guide!</strong></div>
+								</div>
+								<hr>
+								<form class="form-horizontal" method="post" id="carWeights">
+									<h4>Car Weights</h4>
+									<div class="form-control-group row">
+										<label for="carTowCapacity" class="col-sm-3 control-label"><span class="plate"><span class="glyphicon glyphicon-list blue"></span> Tow Weight </span><span class="glyphicon glyphicon-asterisk red"></span></label>
+										<div class="col-sm-9 controls">
+											<input type="number" class="form-control" name="carTowCapacity" aria-describedby="carTowHelp" id="carTowCapacity" required />
+											<span id="carTowHelp" class="help-block">The maximum a vehicle can tow.</span>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="carTowbar" class="col-sm-3 control-label"><span class="plate"><span class="glyphicon glyphicon-list blue"></span> Tow Bar Weight</span></label>
+										<div class="col-sm-9 controls">
+											<input type="number" class="form-control" name="carTowbar" aria-describedby="carTowbarHelp" id="carTowbar" required />
+											<span id="carTowbarHelp" class="help-block">Tow Bar rating - worth checking.</span>
+											<p class="text-danger" id="towbarOutcome"></p>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="carTare" class="col-sm-3 control-label"><span class="plate"><span class="glyphicon glyphicon-list blue"></span> Tare </span><span class="glyphicon glyphicon-asterisk red"></span></label>
+										<div class="col-sm-9 controls">
+											<input type="number" class="form-control" name="carTare" aria-describedby="carTareHelp" id="carTare" required />
+											<span id="carTareHelp" class="help-block">Weight as vehicle leaves factory includes all fluids and 10 litres of fuel.</span>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="carKerb" class="col-sm-3 control-label"><span class="plate"><span class="glyphicon glyphicon-list blue"></span> Kerb </span><span class="glyphicon glyphicon-asterisk red"></span></label>
+										<div class="col-sm-9 controls">
+											<input type="number" class="form-control" name="carKerb" aria-describedby="carKerbHelp" id="carKerb" required />
+											<span id="carKerbHelp" class="help-block">Tare weight + full tank of fuel, no accessories (bull bars, tow bars, roof racks etc), no payload</span>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="carGvm" class="col-sm-3 control-label"><span class="plate"><span class="glyphicon glyphicon-list blue"></span> Gross Veh. Mass </span><span class="glyphicon glyphicon-asterisk red"></span></label>
+										<div class="col-sm-9 controls">
+											<input type="number" class="form-control" name="carGvm" aria-describedby="carGvmHelp" id="carGvm" required />
+											<span id="carGvmHelp" class="help-block">Kerb weight + payload + accessories.</span>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="carAccessories" class="col-sm-3 control-label"><span class="owner"><span class="glyphicon glyphicon-scale orange"></span> Car Accessories </span><span class="glyphicon glyphicon-asterisk red"></span></label>
+										<div class="col-sm-9 controls">
+											<input type="number" class="form-control" name="carAccessories" aria-describedby="carAccessoriesHelp" id="carAccessories" required />
+											<span id="carAccessoriesHelp" class="help-block">Bullbar, roofrack, towbar etc.</span>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="carMaxPayload" class="col-sm-3 control-label"><span class="outputs"><span class="glyphicon glyphicon-stats purple"></span> Your Max Payload</span></label>
+										<div class="col-sm-9 controls">
+											<output name="carMaxPayload" aria-describedby="carMaxPayloadHelp" id="carMaxPayload" >0</output>
+											<span id="carMaxPayloadHelp" class="help-block">Based on your weights so far this is your maximum payload.</span>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="carPayload" class="col-sm-3 control-label"><span class="owner"><span class="glyphicon glyphicon-scale orange"></span> Car Payload </span><span class="glyphicon glyphicon-asterisk red"></span></label>
+										<div class="col-sm-9 controls">
+											<input type="number" class="form-control" name="carPayload" aria-describedby="carPayloadHelp" id="carPayload" required />
+											<span id="carPayloadHelp" class="help-block">people, cargo etc.</span>
+											<p class="text-danger" id="payloadOutcome"></p>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="carYourWeights" class="col-sm-3 control-label"><span class="outputs"><span class="glyphicon glyphicon-stats purple"></span> Total Car Weight</span></label>
+										<div class="col-sm-9 controls">
+											<output name="carYourWeights" aria-describedby="carYourWeightsHelp" id="carYourWeights">0</output>
+											<span id="carYourWeightsHelp" class="help-block">Total Car Weight = Kerb + Accessories + Payload.</span>
+											<p class="text-danger" id="weightOutcome"></p>
+										</div>
+									</div>
+								</form> <!-- car weights -->
+								<div class="container">
+									<button type="button" class="btn btn-danger" id="butCarReset">Clear Car Data</button>
+								</div>
+								<hr>
+								<form class="form-horizontal" method="post" id="vanWeights">
+									<h4>Van Weights</h4>
+									<div class="form-control-group row">
+										<label for="vanTare" class="col-sm-3 control-label"><span class="plate"><span class="glyphicon glyphicon-list blue"></span> Tare </span><span class="glyphicon glyphicon-asterisk red"></span></label>
+										<div class="col-sm-9 controls">
+											<input type="number" class="form-control" name="vanTare" aria-describedby="vanTareHelp" id="vanTare" required />
+											<span id="vanTareHelp" class="help-block">Caravan mass when delivered by the factory includes all factory fitted options, excludes liquids such as water and gas.</span>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="vanGtm" class="col-sm-3 control-label"><span class="plate"><span class="glyphicon glyphicon-list blue"></span> GTM </span><span class="glyphicon glyphicon-asterisk red"></span></label>
+										<div class="col-sm-9 controls">
+											<input type="number" class="form-control" name="vanGtm" aria-describedby="vanGtmHelp" id="vanGtm" required />
+											<span id="vanGtmHelp" class="help-block">Fully loaded trailer when coupled to the tow vehicle: ATM - towball mass.</span>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="vanTowballMass" class="col-sm-3 control-label"><span class="plate"><span class="glyphicon glyphicon-list blue"></span> Towball Mass </span><span class="glyphicon glyphicon-asterisk red"></span></label>
+										<div class="col-sm-9 controls">
+											<input type="number" class="form-control" name="vanTowballMass" aria-describedby="vanTowballMassHelp" id="vanTowballMass" required />
+											<span id="vanTowballMassHelp" class="help-block">Note - if not plated use: ATM - GTM.</span>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="vanAtm" class="col-sm-3 control-label"><span class="plate"><span class="glyphicon glyphicon-list blue"></span> ATM </span><span class="glyphicon glyphicon-asterisk red"></span></label>
+										<div class="col-sm-9 controls">
+											<input type="number" class="form-control" name="vanAtm" aria-describedby="vanAtmHelp" id="vanAtm" required />
+											<span id="vanAtmHelp" class="help-block">The max your caravan can weigh unhitched: tare mass + max payload (ATM - Tare).</span>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="vanMaxPayload" class="col-sm-3 control-label"><span class="outputs"><span class="glyphicon glyphicon-stats purple"></span> Allowable Payload</span></label>
+										<div class="col-sm-9 controls">
+											<output name="vanMaxPayload" aria-describedby="vanMaxPayloadHelp" id="vanMaxPayload">0</output>
+											<span id="vanMaxPayloadHelp" class="help-block">Your available payload includes water, gas etc.</span>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="vanPayload" class="col-sm-3 control-label"><span class="owner"><span class="glyphicon glyphicon-scale orange"></span> Your Payload </span><span class="glyphicon glyphicon-asterisk red"></span></label>
+										<div class="col-sm-9 controls">
+											<input type="number" class="form-control" name="vanPayload" aria-describedby="vanPayloadHelp" id="vanPayload" required />
+											<span id="vanPayloadHelp" class="help-block">the weight of your payload.</span>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="vanYourWeights" class="col-sm-3 control-label"><span class="outputs"><span class="glyphicon glyphicon-stats purple"></span> Your Van Weight</span></label>
+										<div class="col-sm-9 controls">
+											<output name="vanYourWeights" id="vanYourWeights" aria-describedby="vanYourWeightsHelp">0</output>
+											<span id="vanYourWeightsHelp" class="help-block">TARE + your payload.</span>
+										</div>
+									</div>
+								</form> <!-- van weights -->
+								<div class=".container">
+									<button type="button" class="btn btn-danger" id="butVanReset">Clear Van Data</button>
+								</div>
+								<hr>
+								<form class="form-horizontal" method="post" id="assessWeights">
+									<h4>Car Combined Weight</h4>
+									<div class="form-control-group row">
+										<label for="carGcm" class="col-sm-3 control-label"><span class="plate"><span class="glyphicon glyphicon-list blue"></span> GCM </span><span class="glyphicon glyphicon-asterisk red"></span></label>
+										<div class="col-sm-9 controls">
+											<input type="number" class="form-control" name="carGcm" aria-describedby="carGcmHelp" id="carGcm" required />
+											<span id="carGcmHelp" class="help-block">Gross weight for vehicle.</span>
+										</div>
+									</div>
+									<div class="form-control-group row">
+										<label for="combinedWeights" class="col-sm-3 control-label"><span class="outputs"><span class="glyphicon glyphicon-stats purple"></span> Your Combined Total</span></label>
+										<div class="col-sm-9 controls">
+											<output name="combinedWeights" id="combinedWeights" aria-describedby="combinedWeightsHelp"></output>
+											<span id="combinedWeightsHelp" class="help-block">Your combined weights.</span>
+										</div>
+									</div>
+								</form> <!-- combined assessment -->
+							</div> <!-- container -->
+						</div> <!-- tab2 -->
+						<div class="tab-pane fade" id="tab3Checklists">
+							<div class=".container-fluid">
+								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+									<div class="panel panel-info" id="panelOne">
+										<div class ="panel-heading" role="tab" id="headingOne">
+											<h4 class="panel-title">
+												<a role="button" id="headingaOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Arrival List Inside</a>
+											</h4>
+										</div>
+										<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+											<div class="panel-body" id="panelbOne">
+												<p class="text-danger" id="noArrListInside"></p>
+												<form class="form-horizontal" id="displayArrListInside" name="displayArrListInside">
+												</form> <!-- dynamic form -->
+												<hr>
+												<button type="button" class="btn btn-danger" id="butArrInside">Reset List</button>
+											</div> <!-- panel body -->
+										</div> <!-- collapse1 -->
+									</div>  <!-- default -->
+									<div class="panel panel-info" id="panelTwo">
+										<div class ="panel-heading" role="tab" id="headingTwo">
+											<h4 class="panel-title">
+												<a class="collapsed" id="headingaTwo" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Arrival List Outside</a>
+											</h4>
+										</div>
+										<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+											<div class="panel-body" id="panelbTwo">
+												<p class="text-danger" id="noArrListOutside"></p>
+												<form class="form-horizontal" id="displayArrListOutside" name="displayArrListOutside">
+												</form> <!-- dynamic form -->
+												<hr>
+												<button type="button" class="btn btn-danger" id="butArrOutside">Reset List</button>
+											</div> <!-- panel body-->
+										</div> <!-- collapse2 -->
+									</div> <!-- default -->
+									<div class="panel panel-info" id="panelThree">
+										<div class ="panel-heading" role="tab" id="headingThree">
+											<h4 class="panel-title">
+												<a class="collapsed" id="headingaThree" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Departure List Inside</a>
+											</h4>
+										</div>
+										<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+											<div class="panel-body" id="panelbThree">
+												<div class="nolist">
+													<p class="text-danger" id="noDepListInside"></p>
+												</div>
+												<form class="form-horizontal" id="displayDepListInside" name="displayDepListInside">
+												</form>
+												<hr>
+												<button type="button" class="btn btn-danger" id="butDepInside">Reset List</button>
+											</div> <!-- panelb3 body -->
+										</div> <!-- collapse3 -->
+									</div> <!-- default-->
+									<div class="panel panel-info" id="panelFour">
+										<div class ="panel-heading" role="tab" id="headingFour">
+											<h4 class="panel-title">
+												<a class="collapsed" id="headingaFour" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Departure List Outside</a>
+											</h4>
+										</div> <!-- headingfour -->
+										<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+											<div class="panel-body" id="panelbFour">
+												<div class="nolist">
+													<p class="text-danger" id="noDepListOutside"></p>
+												</div>
+												<form class="form-horizontal" id="displayDepListOutside" name="displayDepListOutside">
+												</form>
+												<hr>
+												<button type="button" class="btn btn-danger" id="butDepOutside">Reset List</button>
+											</div> <!-- panelbFour -->
+										</div> <!-- collapse4 -->
+									</div>  <!--  panelFour -->
+								</div> <!-- accordion -->
+							</div> <!-- containter -->
+						</div> <!-- tab3 checklists -->
+						<div class="tab-pane fade" id="tab4Editlist">
+							<div class=".container">
+								<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#editArrive" aria-expanded="false" aria-controls="editArrive">Arrival List</button>
+								<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#editDepart" aria-expanded="false" aria-controls="editDepart">Depature List</button>
+								<hr>
+								<div class="panel-group" id="accordionListHelp" role="tablist" aria-multiselectable="true">
+									<div class="panel panel-info" id="panelGuideOne">
+										<div class ="panel-heading" role="tab" id="headingGuideOne">
+											<h4 class="panel-title">
+												<a role="button" id="headingaGuideOne" data-toggle="collapse" data-parent="#accordionListHelp" href="#collapseGuideOne" aria-expanded="true" aria-controls="collapseOne">Check List Help </a>
+											</h4>
+										</div> <!-- panel heading -->
+										<div id="collapseGuideOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingGuideOne">
+											<div class="panel-body" id="panelbGuideOne">
+												<p>Create the checklists that are used in the 'Checklists' tab. Of note you can make sublists for inside or outside checks. If you only want a single list then stay with the default selection 'In'</p>
+												<div class="table-responsive">
+													<table class="table">
+															<thead>
+																	<tr>
+																			<th>Button</th>
+																			<th>Definition</th>
+																	</tr>
+															</thead>
+															<tbody>
+																	<tr>
+																			<td><button type="button" id="listGuide2" class="btn btn-xs btn-info" aria-label="Add Item" disabled="disabled"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></td>
+																			<td>Add an 'inside' or 'outside' item to the list</td>
+																	</tr>
+																	<tr>
+																			<td><button type="button" id="listGuide3" class="btn btn-xs btn-danger" aria-label="delete Item" disabled="disabled"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
+																			<td>Remove the item from a list</td>
+																	</tr>
+																	<tr>
+																			<td><button type="button" id="listGuide4" class="btn btn-xs btn-success" disabled="disabled">Save List</button></td>
+																			<td>Save the list</td>
+																	</tr>
+																	<tr>
+																			<td><button type="button" id="listGuide5" class="btn btn-xs btn-danger" disabled="disabled">Delete List</button></td>
+																			<td>Delete the list</td>
+																	</tr>
+															</tbody>
+													</table>
+												</div> <!-- responsive table -->
+										</div> <!-- panel body -->
+										</div> <!-- collapseGuideOne -->
+									</div>  <!-- heading panleguideone -->
+								</div> <!-- accordionListHelp -->
+								<div id="editArrive" class="collapse" data-collapse-group="collapse-group">
+									<h4>Arrival CheckList</h4>
+									<!-- <form class="enterArrItem" id="enterArrItem"> -->
+									<form class="form-horizontal" id="enterArrItem">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<label class="radio-inline"><input type="radio" name="locateArr" value="inside" checked="checked">In</label>
+														<label class="radio-inline"><input type="radio" name="locateArr" value="outside">Out</label>
+													</span>
+													<input type="text" class="form-control" name="keyArrItem" placeholder="Add Item" aria-describedby="keyArrItem" id="keyArrItem">
+													<span class="input-group-btn">
+														<button type="button" name="butArrItem" id="butArrItem" class="btn btn-info" aria-label="Add Item"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+													</span>
+												</div> <!-- input group-->
+												<p class="text-danger" id="dupeArrItem"></p>
+											</div> <!-- col-md-12 -->
+										</div> <!-- row -->
+									</form> <!-- enterArrItem -->
+									<form class="form-horizontal" id="createArrList" name="createArrList">
+									</form> <!-- dynmic form -->
+									<hr>
+									<button type="button" class="btn btn-success" id="butSaveList">Save List</button>
+									<button type="button" class="btn btn-danger" id="butArrReset">Delete List</button>
+								</div> <!-- editArrive collapse -->
+								<div id="editDepart" class="collapse" data-collapse-group="collapse-group">
+									<h4>Departure CheckList</h4>
+									<!-- <form class="enterDepItem" id="enterDepItem"> -->
+									<form class="form-horizontal" id="enterDepItem">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="input-group">
+													<span class="input-group-addon">
+														<label class="radio-inline"><input type="radio" name="locateDep" value="inside" checked="checked">Inside</label>
+														<label class="radio-inline"><input type="radio" name="locateDep" value="outside">Outside</label>
+													</span>
+													<input type="text" class="form-control" name="keyDepItem" placeholder="Add Item" aria-describedby="keyDepItem" id="keyDepItem">
+													<span class="input-group-btn">
+														<button type="button" name="butDepItem" id="butDepItem" class="btn btn-info" aria-label="Add Item"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+													</span>
+												</div> <!-- input group -->
+												<p class="text-danger" id="dupeDepItem"></p>
+											</div> <!-- col-md-12 -->
+										</div> <!-- row -->
+									</form>
+									<form class="form-horizontal" id="createDepList" name="createDepList">
+									</form>
+									<hr>
+									<button type="button" class="btn btn-success" id="butSaveListDep">Save List</button>
+									<button type="button" class="btn btn-danger" id="butDepReset">Delete List</button>
+								</div> <!-- editDepart collapse -->
+							</div> <!-- container -->
+						</div> <!-- tab4 content -->
+					</div> <!-- tab content -->
+				</div> <!-- panel body -->
+			</div> <!-- panel primary -->
+		</div> <!-- grid 12 -->
+		</body>
+</html>
