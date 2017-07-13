@@ -401,14 +401,14 @@
 										<label for="vanTare" class="col-sm-3 control-label"><span class="plate"><span class="glyphicon glyphicon-list blue"></span> Tare </span><span class="glyphicon glyphicon-asterisk red"></span></label>
 										<div class="col-sm-9 controls">
 											<input type="number" class="form-control" name="vanTare" aria-describedby="vanTareHelp" id="vanTare" required />
-											<span id="vanTareHelp" class="help-block">Caravan mass when delivered by the factory includes all factory fitted options, excludes liquids such as water and gas.</span>
+											<span id="vanTareHelp" class="help-block">The mass of the caravan with no payload or non-standard accessories i.e. no water in tanks etc.</span>
 										</div>
 									</div>
 									<div class="form-control-group row">
 										<label for="vanGtm" class="col-sm-3 control-label"><span class="plate"><span class="glyphicon glyphicon-list blue"></span> GTM </span><span class="glyphicon glyphicon-asterisk red"></span></label>
 										<div class="col-sm-9 controls">
 											<input type="number" class="form-control" name="vanGtm" aria-describedby="vanGtmHelp" id="vanGtm" required />
-											<span id="vanGtmHelp" class="help-block">Fully loaded trailer when coupled to the tow vehicle: ATM - towball mass.</span>
+											<span id="vanGtmHelp" class="help-block">The maximum allowable mass that can be supported over the caravan's axle(s) i.e. coupled to vehicle.</span>
 										</div>
 									</div>
 									<div class="form-control-group row">
@@ -422,7 +422,7 @@
 										<label for="vanAtm" class="col-sm-3 control-label"><span class="plate"><span class="glyphicon glyphicon-list blue"></span> ATM </span><span class="glyphicon glyphicon-asterisk red"></span></label>
 										<div class="col-sm-9 controls">
 											<input type="number" class="form-control" name="vanAtm" aria-describedby="vanAtmHelp" id="vanAtm" required />
-											<span id="vanAtmHelp" class="help-block">The max your caravan can weigh unhitched: tare mass + max payload (ATM - Tare).</span>
+											<span id="vanAtmHelp" class="help-block">The maximum your caravan can weigh unhitched.</span>
 										</div>
 									</div>
 									<div class="form-control-group row">
@@ -614,7 +614,7 @@
 									<form class="form-horizontal" id="createArrList" name="createArrList">
 									</form> <!-- dynmic form -->
 									<hr>
-									<button type="button" class="btn btn-success" id="butSaveList">Save List</button>
+									<button type="button" class="btn btn-success" id="butSaveListArr">Save List</button>
 									<button type="button" class="btn btn-danger" id="butArrReset">Delete List</button>
 								</div> <!-- editArrive collapse -->
 								<div id="editDepart" class="collapse" data-collapse-group="collapse-group">
