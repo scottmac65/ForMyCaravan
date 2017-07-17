@@ -600,19 +600,6 @@ function save_list(list2save) {
 }
 
 
-/********* van assessments ************/
-/* keep track of tow vehicle weight against trailer ATM */
-/*
-function van_atm () {
-var vanWeights = document.getElementById("vanWeights");
-var carWeights = document.getElementById("carWeights");
-if ((vanWeights.elements["vanAtm"].value || vanWeights.elements["vanYourWeights"].value) >= carWeights.elements["carTow"].value) {
-document.getElementById("carTow").style.backgroundColor="#ffcccc";
-} else {
-document.getElementById("carTow").style.backgroundColor="#99ffcc";
-};
-};
-*/
 // determine van maximum payload
 function van_max_payload () {
     //declare function variables
@@ -633,18 +620,21 @@ function van_payload_check() {
 /* determine the weight of the van based on user values then assess against manufacturer value */
 function van_weight_assess () {
     // declare function variables
+    var text = "";
     var weight = (parseInt(document.getElementById("vanTare").value) || 0) + (parseInt(document.getElementById("vanPayload").value) || 0);
 
     if (weight > document.getElementById("vanAtm").value) {
         document.getElementById("vanYourWeights").style.backgroundColor = "#ffcccc";
         document.getElementById("vanYourWeights").style.fontStyle = "oblique";
-        document.getElementById("vanYourWeightsHelp").innerHTML = "<span class='text-danger'><strong>Your van is to heavy you need to reduce your weight!</strong></span>";
+        text = "<span class='text-danger'><strong>Your van is to heavy you need to reduce your weight!</strong></span>";
     } else {
         document.getElementById("vanYourWeights").style.backgroundColor="#99ffcc";
         document.getElementById("vanYourWeights").style.fontStyle = "normal";
-        document.getElementById("vanYourWeightsHelp").innerHTML = "TARE + your payload.";
+        text = "TARE + your payload.";
     }
     document.getElementById("vanYourWeights").innerHTML = weight;
+    document.getElementById("vanYourWeightsHelp").innerHTML = text;
+
 }
 
 /* **** tow vehicle assessments **** */
@@ -670,15 +660,6 @@ function car_maxpayload_assess () {
     document.getElementById("carMaxPayload").innerHTML = result;
 }
 
-/* set max of payload to the maximum allowable paylaod  */
-function car_payload_maxvalue() {
-    // declare function variables
-    var carWeights = document.getElementById("carWeights");
-    var maxPayload = document.getElementById("carPayload");
-    var newMax = document.getElementById("carMaxPayload");
-    carMaxPayload.setAttribute("max",newMax);
-}
-
 //determine the overall vehicle weight and return a response
 function car_weight_assess () {
     // declare function variables
@@ -687,12 +668,15 @@ function car_weight_assess () {
 
     if (weight > document.getElementById("carGvm").value) {
         document.getElementById("carYourWeights").style.backgroundColor="#ffcccc";
-        text = "<b>Car + load is greater than GVM! Check your weights</b>";
+        document.getElementById("carYourWeights").style.fontStyle = "oblique";
+        text = "<span class='text-danger'><strong>You are over your GVM! Check your weights</strong></span>";
     } else {
         document.getElementById("carYourWeights").style.backgroundColor="#99ffcc";
+        document.getElementById("carYourWeights").style.fontStyle = "normal";
+        text ="Total Car Weight = Kerb + Accessories + Payload";
     }
-    document.getElementById("weightOutcome").innerHTML = text;
     document.getElementById("carYourWeights").innerHTML = weight;
+    document.getElementById("carYourWeightsHelp").innerHTML = text;
 }
 
 /* sets max value of the payload to the maximum allowable paylaod  */
@@ -720,18 +704,27 @@ function car_payload_capacity () {
 function check_combined_weights() {
 
     // declare function variables
+    var text = "";
     var weights = (parseInt(document.getElementById("carYourWeights").value) || 0) + (parseInt(document.getElementById("vanYourWeights").value) ||0);
+    var carWeight = (parseInt(document.getElementById("carKerb").value) || 0) + (parseInt(document.getElementById("carAccessories").value) || 0) + (parseInt(document.getElementById("carPayload").value) || 0);
+    var vanWeight = (parseInt(document.getElementById("vanTare").value) || 0) + (parseInt(document.getElementById("vanPayload").value) || 0);
 
 
     if (weights > document.getElementById("carGcm").value) {
         document.getElementById("combinedWeights").style.backgroundColor="#ffcccc";
-        document.getElementById("combinedWeightsHelp").innerHTML = "<span class='text-danger'><strong>Your combined weights is greater than your GCM!</strong></span>";
-        document.getElementById("combinedWeights").innerHTML = weights;
-    } else {
+        text = "<span class='text-danger'><strong>Your combined weights is greater than your GCM!</strong></span>";
+      } else if (vanWeight > document.getElementById("vanAtm").value) {
+          document.getElementById("combinedWeights").style.backgroundColor = "#ffcccc";
+          text = "<span class='text-danger'><strong>Your van is to heavy you need to reduce your weight!</strong></span>";
+    } else if (carWeight > document.getElementById("carGvm").value) {
+          document.getElementById("combinedWeights").style.backgroundColor="#ffcccc";
+          text = "<span class='text-danger'><strong>You are over your car's GVM! Check your car weights</strong><span>";
+    }  else {
         document.getElementById("combinedWeights").style.backgroundColor="#99ffcc";
-        document.getElementById("combinedWeightsHelp").innerHTML = "Your combined weights";
-        document.getElementById("combinedWeights").innerHTML = weights;
+        text = "Your combined weights";
     }
+    document.getElementById("combinedWeights").innerHTML = weights;
+    document.getElementById("combinedWeightsHelp").innerHTML = text;
 }
 
 
