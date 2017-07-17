@@ -713,7 +713,7 @@ function check_combined_weights() {
     if (weights > document.getElementById("carGcm").value) {
         document.getElementById("combinedWeights").style.backgroundColor="#ffcccc";
         text = "<span class='text-danger'><strong>Your combined weights is greater than your GCM!</strong></span>";
-      } else if (vanWeight > document.getElementById("vanAtm").value) {
+    } else if (vanWeight > document.getElementById("vanAtm").value) {
           document.getElementById("combinedWeights").style.backgroundColor = "#ffcccc";
           text = "<span class='text-danger'><strong>Your van is to heavy you need to reduce your weight!</strong></span>";
     } else if (carWeight > document.getElementById("carGvm").value) {
@@ -778,25 +778,3 @@ function update_assessments () {
     car_weight_assess();
     check_combined_weights();
 }
-
-/* ensure ouput values are calculated when loading localStorage */
-
-window.onload = function() {
-    /*
-    if (localStorage.getItem('cntarr') === null)  {
-    console.log("setting item to 0");
-    localStorage.setItem('cntarr', '0');
-}
-if (localStorage.getItem('cntdep') === null) {
-localStorage.setItem('cntdep', '0');
-}
-
-document.getElementById("carMaxPayload").value = document.getElementById("carGvm").value - document.getElementById("carKerb").value;
-document.getElementById("carYourWeights").value = document.getElementById("carKerb").value + document.getElementById("carPayload").value + document.getElementById("carAccessories").value;
-document.getElementById("vanYourWeights").value = document.getElementById("vanTare").value + document.getElementById("vanPayload").value;
-document.getElementById("vanMaxPayload").value = document.getElementById("vanAtm").value - document.getElementById("vanTare").value;
-*/
-// update_assessments();
-// save_list();
-//check_lists();
-};
