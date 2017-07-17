@@ -172,7 +172,7 @@ $(document).ready(function () {
     $(document).on('change', '#vanTare', function () {
       update_assessments();
     });
-    $(document).on('change', '#carPayload', function () {
+    $(document).on('change', '#vanPayload', function () {
       update_assessments();
     });
     $(document).on('change', '#carGcm', function () {
@@ -617,7 +617,7 @@ document.getElementById("carTow").style.backgroundColor="#99ffcc";
 function van_max_payload () {
     //declare function variables
     var result = document.getElementById("vanAtm").value - document.getElementById("vanTare").value;
-    document.getElementById("vanMaxPayload").style.backgroundColor = "#99ffcc";
+    document.getElementById("vanMaxPayload").style.backgroundColor = "#c5f0f7";
     document.getElementById("vanMaxPayload").innerHTML = result;
 }
 
@@ -666,7 +666,7 @@ function car_tow_capacity () {
 function car_maxpayload_assess () {
     // declare function variables
     var result = document.getElementById("carGvm").value - document.getElementById("carKerb").value - document.getElementById("carAccessories").value;
-    document.getElementById("carMaxPayload").style.backgroundColor = "#99ffcc";
+    document.getElementById("carMaxPayload").style.backgroundColor = "#c5f0f7";
     document.getElementById("carMaxPayload").innerHTML = result;
 }
 
