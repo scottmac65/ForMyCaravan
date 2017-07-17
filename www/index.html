@@ -58,8 +58,9 @@
 					<ul class="nav nav-tabs" data-tabs="tabs" id="myCaravanTab">
 						<li class="active"><a data-toggle="tab" href="#tab1Details">Details</a></li>
 						<li><a data-toggle="tab" href="#tab2Weights">Weights</a></li>
-						<li><a data-toggle="tab" href="#tab3Checklists">Checklists</a></li>
-						<li><a data-toggle="tab" href="#tab4Editlist">Edit Lists</a></li>
+						<li><a data-toggle="tab" href="#tab3Todo">Todo</a></li>
+						<li><a data-toggle="tab" href="#tab4Checklists">Checklists</a></li>
+						<li><a data-toggle="tab" href="#tab5Editlist">Edit Lists</a></li>
 					</ul> <!-- tabs -->
 				</div> <!-- panel heading -->
 				<div class="panel-body">
@@ -471,7 +472,11 @@
 								</form> <!-- combined assessment -->
 							</div> <!-- container -->
 						</div> <!-- tab2 -->
-						<div class="tab-pane fade" id="tab3Checklists">
+						<div class="tab-pane fade" id="tab3Todo">
+							<div class=".container">
+							</div> <!-- container -->
+						</div> <!-- tab3 -->
+						<div class="tab-pane fade" id="tab4Checklists">
 							<div class=".container-fluid">
 								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 									<div class="panel panel-info" id="panelOne">
@@ -544,8 +549,8 @@
 									</div>  <!--  panelFour -->
 								</div> <!-- accordion -->
 							</div> <!-- containter -->
-						</div> <!-- tab3 checklists -->
-						<div class="tab-pane fade" id="tab4Editlist">
+						</div> <!-- tab4 checklists -->
+						<div class="tab-pane fade" id="tab5Editlist">
 							<div class=".container">
 								<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#editArrive" aria-expanded="false" aria-controls="editArrive">Arrival List</button>
 								<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#editDepart" aria-expanded="false" aria-controls="editDepart">Depature List</button>
@@ -645,7 +650,8 @@
 									<button type="button" class="btn btn-danger" id="butDepReset">Delete List</button>
 								</div> <!-- editDepart collapse -->
 							</div> <!-- container -->
-						</div> <!-- tab4 content -->
+						</div> <!-- tab5 content -->
+
 					</div> <!-- tab content -->
 				</div> <!-- panel body -->
 			</div> <!-- panel primary -->
