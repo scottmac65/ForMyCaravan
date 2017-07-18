@@ -221,6 +221,10 @@ $(document).ready(function () {
         var panelObj = {panel: "four", list: "Depart", location: "Outside"};
         panel_attributes(checked, panelObj);
     });
+    $(document).on('click', '.butRemoveItem', function() {
+      removeElement(this.id);
+    });
+
     // work out if we have items in localstorage if not create a counter set to 0
     if (localStorage.getItem('cntarr') === null) {
         localStorage.setItem('cntarr', '0');
@@ -401,6 +405,42 @@ function check_for_dupes(item2add, list2edit) {
     }
 }
 
+//display the lists
+function display_list(list2edit, item2add) {
+    //declare vairables
+    var locate;
+    var storageKey = "";
+    locate = inside_or_outside(list2edit);
+
+    // reset input values
+    document.getElementById("keyArrItem").value = "";
+    document.getElementById("keyDepItem").value = "";
+
+    //create the storagekey
+    storageKey = list2edit;
+    storageKey += locate.locateItem;
+    storageKey += item2add;
+    var createItem = document.createElement('div');
+    createItem.setAttribute("class", "row");
+    createItem.setAttribute("id", storageKey);
+    createItem.innerHTML = '<div class="col-md-12">' +
+    '<div class="input-group">' +
+    '<span class="input-group-addon">' + locate.locateList + '</span>' +
+    '<input type="text" class="form-control" name="' + storageKey + '" id="' + storageKey + '" value="' + item2add +'" readonly>' +
+    '<span class="input-group-btn">'+
+    '<button type="button" name="removeItem" id="rem_' + storageKey + '" class="butRemoveItem btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true">' +
+    '</button></span></div></div>';
+    if (list2edit === 'arr') {
+        document.getElementById("createArrList").appendChild(createItem);
+        localStorage.setItem(storageKey, item2add);
+        manageCounters(list2edit, 'increment');
+    } else {
+        document.getElementById("createDepList").appendChild(createItem);
+        localStorage.setItem(storageKey, item2add);
+        manageCounters(list2edit, 'increment');
+    }
+}
+
 //work out whether we have an inside or outside list
 function inside_or_outside(list2edit) {
     //declare function variables
@@ -430,42 +470,6 @@ function inside_or_outside(list2edit) {
     return {locateItem: locateItem, locateList:locateList};
 }
 
-//display the lists
-function display_list(list2edit, item2add) {
-    //declare vairables
-    var locate;
-    var storageKey = "";
-
-    locate = inside_or_outside(list2edit);
-
-    // reset input values
-    document.getElementById("keyArrItem").value = "";
-    document.getElementById("keyDepItem").value = "";
-
-    //create the storagekey
-    storageKey = list2edit;
-    storageKey += locate.locateItem;
-    storageKey += item2add;
-    var createItem = document.createElement('div');
-    createItem.setAttribute("class", "row");
-    createItem.setAttribute("id", storageKey);
-    createItem.innerHTML = '<div class="col-md-12">' +
-    '<div class="input-group">' +
-    '<span class="input-group-addon">' + locate.locateList + '</span>' +
-    '<input type="text" class="form-control" name="' + storageKey + '" id="' + storageKey + '" value="' + item2add +'" readonly>' +
-    '<span class="input-group-btn">'+
-    '<button type="button" name="removeItem" id="rem_' + storageKey + '" class="btn btn-danger" onClick="removeElement(this.id)"><span class="glyphicon glyphicon-trash" aria-hidden="true">' +
-    '</button></span></div></div>';
-    if (list2edit === 'arr') {
-        document.getElementById("createArrList").appendChild(createItem);
-        localStorage.setItem(storageKey, item2add);
-        manageCounters(list2edit, 'increment');
-    } else {
-        document.getElementById("createDepList").appendChild(createItem);
-        localStorage.setItem(storageKey, item2add);
-        manageCounters(list2edit, 'increment');
-    }
-}
 
 
 // create the checklists
@@ -582,12 +586,19 @@ function save_list(list2save) {
         createItem = document.createElement('div');
         createItem.setAttribute("class", "row");
         createItem.setAttribute("id", tmpKey);
-        createItem.innerHTML = '<div class="col-md-12">' +
+/*        createItem.innerHTML = '<div class="col-md-12">' +
         '<div class="input-group">' +
         '<span class="input-group-addon">' + tmpLocate + '</span>' +
         '<input type="text" class="form-control" name="' + tmpKey + '" id="' + tmpKey + '" value="' + tmpItem +'" readonly>' +
         '<span class="input-group-btn">'+
         '<button type="button" name="removeItem" id="rem_' + tmpKey + '" class="btn btn-danger" onClick="removeElement(this.id)"><span class="glyphicon glyphicon-trash" aria-hidden="true">' +
+        '</button></span></div></div>'; */
+        createItem.innerHTML = '<div class="col-md-12">' +
+        '<div class="input-group">' +
+        '<span class="input-group-addon">' + tmpLocate + '</span>' +
+        '<input type="text" class="form-control" name="' + tmpKey + '" id="' + tmpKey + '" value="' + tmpItem +'" readonly>' +
+        '<span class="input-group-btn">'+
+        '<button type="button" name="removeItem" id="rem_' + tmpKey + '" class="butRemoveItem btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true">' +
         '</button></span></div></div>';
 
         if(tmpList === "arr"){
