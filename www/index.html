@@ -472,15 +472,34 @@
 								</form> <!-- combined assessment -->
 							</div> <!-- container -->
 						</div> <!-- tab2 -->
+
+
+
 						<div class="tab-pane fade" id="tab3Todo">
 							<div class=".container">
-								<form class="form-horizontal" id="todoList" name="todoList">
-								</form> <!-- todo form -->
-								<button type="button" class="btn btn-success" id="butSaveTodoList">Save List</button>
-								<button type="button" class="btn btn-danger" id="butDelTodoList">Delete List</button>
-
+								<h4>Todo List</h4>
+								<form class="form-horizontal" id="enterTodo">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="input-group">
+												<input type="text" class="form-control" name="keyTodoItem" placeholder="Add Item" aria-describedby="keyTodoItem" id="keyTodoItem">
+												<span class="input-group-btn">
+													<button type="button" name="butTodoItem" id="butTodoItem" class="btn btn-info" aria-label="Add Item"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+												</span>
+											</div> <!-- input group-->
+											<p class="text-danger" id="dupeArrItem"></p>
+										</div> <!-- col-md-12 -->
+									</div> <!-- row -->
+								</form> <!-- enterTodo -->
+								<form class="form-horizontal" id="createTodoList" name="createTodoList">
+								</form> <!-- dynmic form -->
+								<hr>
+								<button type="button" class="btn btn-danger" id="butTodoReset">Delete List</button>
 							</div> <!-- container -->
 						</div> <!-- tab3 -->
+
+
+
 						<div class="tab-pane fade" id="tab4Checklists">
 							<div class=".container-fluid">
 								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">

@@ -54,7 +54,7 @@ app.initialize();
  */
 $(document).ready(function () {
 
-    // add forms to local storage using sysiyphus javascript.
+    // add forms to local storage using sysyphus javascript.
     $('#vehicleDetails').sisyphus();
     $('#trailDetails').sisyphus();
     $('#carWeights').sisyphus();
@@ -582,7 +582,6 @@ function inside_or_outside(list2edit) {
  * @return {[type]} [description]
  */
 function check_lists() {
-    // declare function variables
     /**
      * check_lists local variables
      * @type {number} isArrList arrival list counter from localStorage
@@ -969,7 +968,6 @@ function clear_storage (clearing) {
     return false;
 }
 
-/* 'onchange' calls to keep assessments up to date  */
 /**
  * calls to a number of procedures to ensure assessments are changed,
  * in realtime
