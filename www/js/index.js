@@ -362,12 +362,12 @@ function remove_element(removeID) {
 function add_item(list2edit) {
     //declare function variables
     var text = "", item2add = "";
-
+    alert("value is " + list2edit);
     // get item to add and clear the output text for dupe items until we have a dupe item
     if (list2edit === 'arr') {
         item2add = document.getElementById('keyArrItem').value;
         document.getElementById('dupeArrItem').innerHTML = text;
-    } else {
+    } else if (list2edit === "dep") {
         item2add = document.getElementById('keyDepItem').value;
         document.getElementById('dupeDepItem').innerHTML = text;
     }
