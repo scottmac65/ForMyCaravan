@@ -120,6 +120,9 @@ $(document).ready(function () {
         case "butDepItem":
           add_item('dep');
           break;
+        case "butTodoItem":
+          add_item('tod');
+          break;
         case "butVanReset":
           clear_storage('vanReset');
           break;
@@ -440,7 +443,7 @@ function add_item(list2edit) {
     * @type {string} item2add name of item to add to list
     */
     var text = "", item2add = "";
-    alert("value is " + list2edit);
+
     // get item to add and clear the output text for dupe items until we have a dupe item
     if (list2edit === 'arr') {
         item2add = document.getElementById('keyArrItem').value;
@@ -448,6 +451,9 @@ function add_item(list2edit) {
     } else if (list2edit === "dep") {
         item2add = document.getElementById('keyDepItem').value;
         document.getElementById('dupeDepItem').innerHTML = text;
+    } else { // item is todo list
+        item2add = document.getElementById('keyTodoItem').value;
+        document.getElementById('dupeTodoItem').innerHTML = text;
     }
     // do nothing if we have no input
     if (item2add === "") { return; }
