@@ -140,8 +140,8 @@ $(document).ready(function () {
           save_list('arr');
           break;
         case "butSaveListDep":
-            save_list('dep');
-            break;
+          save_list('dep');
+          break;
         default:
           break;
       }
@@ -222,7 +222,7 @@ $(document).ready(function () {
         panel_attributes(checked, panelObj);
     });
     $(document).on('click', '.butRemoveItem', function() {
-      removeElement(this.id);
+      remove_element(this.id);
     });
 
     // work out if we have items in localstorage if not create a counter set to 0
@@ -329,7 +329,7 @@ function panel_attributes(checked, panel2change) {
     }
 }
 // managing localStorage counters to keep track of how many items we have
-function manageCounters(list, move) {
+function manage_counters(list, move) {
     //declare vaiables for function
     var cnt, newKey = 'cnt' + list;
 
@@ -345,16 +345,16 @@ function manageCounters(list, move) {
 }
 
 // remove an element from the list and localstorage
-function removeElement(removeID) {
+function remove_element(removeID) {
     //declare variables for function
     var newID = removeID.slice(4), elem = document.getElementById(newID);
     //  console.log ("new " + newID + " elem " + elem);
     elem.parentNode.removeChild(elem);
     localStorage.removeItem(newID);
     if (newID.includes('arr')) {
-        manageCounters('arr', 'decrement');
+        manage_counters('arr', 'decrement');
     } else {
-        manageCounters('dep', 'decrement');
+        manage_counters('dep', 'decrement');
     }
 }
 
@@ -433,11 +433,11 @@ function display_list(list2edit, item2add) {
     if (list2edit === 'arr') {
         document.getElementById("createArrList").appendChild(createItem);
         localStorage.setItem(storageKey, item2add);
-        manageCounters(list2edit, 'increment');
+        manage_counters(list2edit, 'increment');
     } else {
         document.getElementById("createDepList").appendChild(createItem);
         localStorage.setItem(storageKey, item2add);
-        manageCounters(list2edit, 'increment');
+        manage_counters(list2edit, 'increment');
     }
 }
 
@@ -586,13 +586,6 @@ function save_list(list2save) {
         createItem = document.createElement('div');
         createItem.setAttribute("class", "row");
         createItem.setAttribute("id", tmpKey);
-/*        createItem.innerHTML = '<div class="col-md-12">' +
-        '<div class="input-group">' +
-        '<span class="input-group-addon">' + tmpLocate + '</span>' +
-        '<input type="text" class="form-control" name="' + tmpKey + '" id="' + tmpKey + '" value="' + tmpItem +'" readonly>' +
-        '<span class="input-group-btn">'+
-        '<button type="button" name="removeItem" id="rem_' + tmpKey + '" class="btn btn-danger" onClick="removeElement(this.id)"><span class="glyphicon glyphicon-trash" aria-hidden="true">' +
-        '</button></span></div></div>'; */
         createItem.innerHTML = '<div class="col-md-12">' +
         '<div class="input-group">' +
         '<span class="input-group-addon">' + tmpLocate + '</span>' +
