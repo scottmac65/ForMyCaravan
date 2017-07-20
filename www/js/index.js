@@ -129,6 +129,9 @@ $(document).ready(function () {
         case "butCarReset":
           clear_storage('carReset');
           break;
+        case "butTodoReset":
+          clear_storage('todReset');
+          break;
         case "butVehReset":
           clear_storage('vehReset');
           break;
@@ -252,6 +255,9 @@ $(document).ready(function () {
     }
     if (localStorage.getItem('cntdep') === null) {
         localStorage.setItem('cntdep', '0');
+    }
+    if (localStorage.getItem('cnttod') === null) {
+        localStorage.setItem('cnttod', '0');
     }
 
     // check if we have a value or not - if not return a '0',
@@ -491,8 +497,10 @@ function check_for_dupes(item2add, list2edit) {
             text = "<b>You already have this item in your list!</b>";
             if (list2edit === 'arr') {
                 document.getElementById("dupeArrItem").innerHTML = text;
-            } else {
+            } else if (list2edit === 'dep'){
                 document.getElementById("dupeDepItem").innerHTML = text;
+            } else { // list2edit === tod
+              document.getElementById("dupeTodoItem").innerHTML = text;
             }
             return true;
         }
@@ -561,13 +569,16 @@ function inside_or_outside(list2edit) {
 
     if (list2edit === "arr") {
         locate = document.getElementsByName('locateArr');
-    }else {
+    }else if (list2edit === "dep") {
         locate = document.getElementsByName('locateDep');
+    } else { // we have todo list - future could be more than one list?
+      locate = 't';
     }
-    //return locate;
     // determine if we have an inside/outside value
     for (var i = 0; i < locate.length; i++) {
-        if (locate[i].checked) {
+      //alert("locate " + locate + " length " + locate.length + " check " + locate[i].checked + " value " + locate[i].value);
+
+        if (locate[i].checked && locate !== 't') {
             locateItem = locate[i].value;
             // value to concat to item for storing
             if (locate[i].value === "inside") {
@@ -578,6 +589,9 @@ function inside_or_outside(list2edit) {
                 locateList = locate[i].value;
             }
             break;
+        } else { // more basic at this stage as we only have one todo list
+          locateItem = "_t_";
+          locateList = "todo";
         }
     }
     return {locateItem: locateItem, locateList:locateList};
@@ -958,7 +972,11 @@ function clear_storage (clearing) {
         } else if (clearing === "arrReset") {
             re = /arr/;
             localStorage.setItem('cntarr', 0);
+        } else if (clearing === "todReset") {
+            re = /tod/;
+            localStorage.setItem('cnttod', 0);
         }
+
         // need to reverse loop based on behaviour of localstorage
         cnt = localStorage.length;
         for (var i = localStorage.length-1; i >= 0; i--) {
